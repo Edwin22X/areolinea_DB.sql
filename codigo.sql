@@ -72,7 +72,7 @@ CREATE TABLE Aeropuerto(
   nombre_aeropuerto VARCHAR(255) NOT NULL, 
 cod_pais VARCHAR(3) NOT NULL,
 PRIMARY KEY(cod_aeropuerto),
-CONSTRAINT fk_pais FOREING KEY(cod_pais) REFERENCES Pais(cod_pais),
+CONSTRAINT fk_pais FOREIGN KEY(cod_pais) REFERENCES Pais(cod_pais),
 );
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE Aerolinea(
   nombre_aerolinea VARCHAR(255) NOT NULL, 
 aeropuerto_principal VARCHAR(4) NOT NULL,
 PRIMARY KEY(cod_aerolinea),
-CONSTRAINT fk_aeropuerto FOREING KEY(aeropuerto_principal) REFERENCES Aeropuerto(cod_aeropuerto),
+CONSTRAINT fk_aeropuerto FOREIGN KEY(aeropuerto_principal) REFERENCES Aeropuerto(cod_aeropuerto),
 );
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE Aviones(
 cod_aerolinea VARCHAR(3) NOT NULL,
 capacidad INT NOT NULL,
 PRIMARY KEY(cod_avion),
-CONSTRAINT fk_aerolinea FOREING KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
+CONSTRAINT fk_aerolinea FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
 );
 
 --
@@ -112,9 +112,9 @@ pais_destino VARCHAR(3) NOT NULL,
 hora_salida DATETIME NOT NULL,
 hora_llegada DATETIME NOT NULL, 
 PRIMARY KEY(cod_vuelo),
-CONSTRAINT fk_avion FOREING KEY(cod_avion) REFERENCES Aviones(cod_avion),
-CONSTRAINT fk_paisO FOREING KEY(pais_origen) REFERENCES Pais(cod_pais),
-CONSTRAINT fk_paisD FOREING KEY(pais_destino) REFERENCES Pais(cod_pais),
+CONSTRAINT fk_avion FOREIGN KEY(cod_avion) REFERENCES Aviones(cod_avion),
+CONSTRAINT fk_paisO FOREIGN KEY(pais_origen) REFERENCES Pais(cod_pais),
+CONSTRAINT fk_paisD FOREIGN KEY(pais_destino) REFERENCES Pais(cod_pais),
 );
 
 --
@@ -128,10 +128,10 @@ destino VARCHAR(3) NOT NULL,
 tiempo TIME NOT NULL,
 cod_estado VARCHAR(1) NOT NULL,
 puerta_abordaje VARCHAR(3) NOT NULL,
-CONSTRAINT fk_aerolinea FOREING KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
-CONSTRAINT fk_vuelo FOREING KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
-CONSTRAINT fk_destino FOREING KEY(destino) REFERENCES Pais(cod_pais),
-CONSTRAINT fk_estado FOREING KEY(cod_estado) REFERENCES Estado(cod_estado),
+CONSTRAINT fk_aerolinea FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
+CONSTRAINT fk_vuelo FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
+CONSTRAINT fk_destino FOREIGN KEY(destino) REFERENCES Pais(cod_pais),
+CONSTRAINT fk_estado FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
 );
 
 --
@@ -147,10 +147,10 @@ cod_vuelo VARCHAR(4) NOT NULL,
 asiento VARCHAR(2) NOT NULL,
 fila VARCHAR(2) NOT NULL,
 PRIMARY KEY(cod_reservacion), 
-CONSTRAINT fk_aerolinea FOREING KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
-CONSTRAINT fk_tipo FOREING KEY(cod_tipo) REFERENCES Tipo_vuelo(cod_tipo),
-CONSTRAINT fk_clase FOREING KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
-CONSTRAINT fk_vuelo FOREING KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
+CONSTRAINT fk_aerolinea FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
+CONSTRAINT fk_tipo FOREIGN KEY(cod_tipo) REFERENCES Tipo_vuelo(cod_tipo),
+CONSTRAINT fk_clase FOREIGN KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
+CONSTRAINT fk_vuelo FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
 ) ;
 
 --
@@ -164,8 +164,8 @@ CREATE TABLE Pase_abordar(
 aeropuerto_origen VARCHAR(4) NOT NULL, 
 aeropuerto_destino VARCHAR(4) NOT NULL,
 PRIMARY KEY(cod_pase),
-CONSTRAINT fk_dni FOREING KEY(dni) REFERENCES Pasajero(dni),
-CONSTRAINT fk_reservacion FOREING KEY(cod_reservacion) REFERENCES Reservacion(cod_reservacion),
-CONSTRAINT fk_aeropuertoO FOREING KEY(aeropuerto_origen) REFERENCES Aeropuerto(cod_aeropuerto),
-CONSTRAINT fk_aeropuertoD FOREING KEY(aeropuerto_destino) REFERENCES Aeropuerto(cod_aeropuerto),
+CONSTRAINT fk_dni FOREIGN KEY(dni) REFERENCES Pasajero(dni),
+CONSTRAINT fk_reservacion FOREIGN KEY(cod_reservacion) REFERENCES Reservacion(cod_reservacion),
+CONSTRAINT fk_aeropuertoO FOREIGN KEY(aeropuerto_origen) REFERENCES Aeropuerto(cod_aeropuerto),
+CONSTRAINT fk_aeropuertoD FOREIGN KEY(aeropuerto_destino) REFERENCES Aeropuerto(cod_aeropuerto),
 );
