@@ -128,10 +128,10 @@ destino VARCHAR(3) NOT NULL,
 tiempo TIME NOT NULL,
 cod_estado VARCHAR(1) NOT NULL,
 puerta_abordaje VARCHAR(3) NOT NULL,
-CONSTRAINT fk_aerolinea FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
-CONSTRAINT fk_vuelo FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
-CONSTRAINT fk_destino FOREIGN KEY(destino) REFERENCES Pais(cod_pais),
-CONSTRAINT fk_estado FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
+CONSTRAINT fk_aerolineaS FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
+CONSTRAINT fk_vueloS FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
+CONSTRAINT fk_destinoS FOREIGN KEY(destino) REFERENCES Pais(cod_pais),
+CONSTRAINT fk_estadoS FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
 );
 
 --
@@ -147,10 +147,10 @@ cod_vuelo VARCHAR(4) NOT NULL,
 asiento VARCHAR(2) NOT NULL,
 fila VARCHAR(2) NOT NULL,
 PRIMARY KEY(cod_reservacion), 
-CONSTRAINT fk_aerolinea FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
-CONSTRAINT fk_tipo FOREIGN KEY(cod_tipo) REFERENCES Tipo_vuelo(cod_tipo),
-CONSTRAINT fk_clase FOREIGN KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
-CONSTRAINT fk_vuelo FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
+CONSTRAINT fk_aerolineaR FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
+CONSTRAINT fk_tipoR FOREIGN KEY(cod_tipo) REFERENCES Tipo_vuelo(cod_tipo),
+CONSTRAINT fk_claseR FOREIGN KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
+CONSTRAINT fk_vueloR FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
 ) ;
 
 --
@@ -164,8 +164,8 @@ CREATE TABLE Pase_abordar(
 aeropuerto_origen VARCHAR(4) NOT NULL, 
 aeropuerto_destino VARCHAR(4) NOT NULL,
 PRIMARY KEY(cod_pase),
-CONSTRAINT fk_dni FOREIGN KEY(dni) REFERENCES Pasajero(dni),
-CONSTRAINT fk_reservacion FOREIGN KEY(cod_reservacion) REFERENCES Reservacion(cod_reservacion),
-CONSTRAINT fk_aeropuertoO FOREIGN KEY(aeropuerto_origen) REFERENCES Aeropuerto(cod_aeropuerto),
-CONSTRAINT fk_aeropuertoD FOREIGN KEY(aeropuerto_destino) REFERENCES Aeropuerto(cod_aeropuerto),
+CONSTRAINT fk_dniPA FOREIGN KEY(dni) REFERENCES Pasajero(dni),
+CONSTRAINT fk_reservacionPA FOREIGN KEY(cod_reservacion) REFERENCES Reservacion(cod_reservacion),
+CONSTRAINT fk_aeropuertoOPA FOREIGN KEY(aeropuerto_origen) REFERENCES Aeropuerto(cod_aeropuerto),
+CONSTRAINT fk_aeropuertoDPA FOREIGN KEY(aeropuerto_destino) REFERENCES Aeropuerto(cod_aeropuerto),
 );
