@@ -22,6 +22,12 @@ CREATE TABLE Pasajero (
   PRIMARY KEY(dni),
 );
 
+---
+---
+INSERT INTO Pasajero VALUES
+(12564897,'Luis','Guevara','06/01/1985','masculino','peruano','luis@gmail.com',859152468),
+;
+
 --
 -- creación tabla PAÍS
 --
@@ -31,6 +37,12 @@ CREATE TABLE Pais (
   nombre_pais VARCHAR(50) NOT NULL, 
 PRIMARY KEY(cod_pais),
 );
+
+--
+--
+INSERT INTO Pais VALUES
+('USA','Estado Unidos'),
+;
 
 --
 -- creación tabla ESTADO
