@@ -22,11 +22,27 @@ CREATE TABLE Pasajero (
   PRIMARY KEY(dni),
 );
 
+---Inserción de datos Pasajero
 ---
----
-INSERT INTO Pasajero VALUES
-(12564897,'Luis','Guevara','06/01/1985','masculino','peruano','luis@gmail.com',859152468),
-;
+---MES-DIA-AÑO formato de la fecha
+INSERT INTO Pasajero VALUES (12564897,'Luis','Guevara','06-01-1985','masculino','peruano','luis@gmail.com',959152468);
+INSERT INTO Pasajero VALUES (15849290,'Angie','Jimenes','07-18-1998','femenino','venezolana','angie@gmail.com',949268489);
+INSERT INTO Pasajero VALUES (18364790,'Zumba','Huamaní','01-23-1990','masculino','mexicano','zumba@gmail.com',916374689);
+INSERT INTO Pasajero VALUES (12917367,'Geraldine','Salcedo','10-20-1993','femenino','chilena' ,'geraldine@gmail.com',910237890);
+INSERT INTO Pasajero VALUES (17281907,'Celeste','Pardo','12-11-1999','femenino','ecuatoriana','celeste@gmail.com',912647579);
+INSERT INTO Pasajero VALUES (12737268,'Ariana','Quevedo','12-12-1998','femenino','peruana','ariana@gmail.com',912378648);
+INSERT INTO Pasajero VALUES (11825488,'Gustavo','Mallqui','05-13-1989','masculino','peruano','gustavo@gmail.com',990736899);
+INSERT INTO Pasajero VALUES (19472579,'German','Garmendia','08-12-1990','masculino','chileno','german@gmail.com',993715167);
+INSERT INTO Pasajero VALUES (18361789,'Adriana','Sanchez','06-13-1976','femenino','argentina','adriana@gmail.com',912389756);
+INSERT INTO Pasajero VALUES (18366808,'Alejandro','Avondano','03-12-1999','masculino','brasileño','alejandro@gmail.com',916372467);
+INSERT INTO Pasajero VALUES (15728874,'Camilo','Cortés','11-11-1991','masculino','peruano','camilo@gmail.com',916371237);
+INSERT INTO Pasajero VALUES (18480752,'Diana','Lopez','10-07-1967','femenino','peruana','diana@gmail.com',995651707);
+INSERT INTO Pasajero VALUES (17469076,'Gabriel','Nieto','03-23-1999','masculino','cubano','gabriel@gmail.com',974071568);
+INSERT INTO Pasajero VALUES (18379076,'Deny','Muñoz','05-23-1998','femenino','peruana','deny@gmail.com',900086156);
+INSERT INTO Pasajero VALUES (18451808,'Cristina','Barthel','09-08-2000','femenino','boliviana','cristina@gmail.com',911186897);
+--
+--
+
 
 --
 -- creación tabla PAÍS
