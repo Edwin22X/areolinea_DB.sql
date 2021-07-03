@@ -93,9 +93,9 @@ PRIMARY KEY(cod_estado),
 --
 
 INSERT INTO Estado VALUES 
-('C','Cancelled'), 
-('D','Delayed'), 
-('O','On Time');
+('C','Cancelled'), --cancelado
+('D','Delayed'), --retrasado
+('O','On Time'); --a tiempo
 
 
 --
@@ -132,9 +132,9 @@ PRIMARY KEY(cod_clase),
 --
 
 INSERT INTO Clase_vuelo VALUES
-('FC','First Class'),
-('BC','Business Class'),
-('TC','Tourist Class');
+('FC','First Class'), --primera clase
+('BC','Business Class'), --clase ejecutiva
+('TC','Tourist Class'); --clase turista
 
 
 --
