@@ -26,21 +26,23 @@ CREATE TABLE Pasajero (
 ---
 ---MES-DIA-AÑO formato de la fecha
 INSERT INTO Pasajero VALUES (12564897,'Luis','Guevara','06-01-1985','masculino','peruano','luis@gmail.com',959152468),
-(15849290,'Angie','Jimenes','07-18-1998','femenino','venezolana','angie@gmail.com',949268489),
+(15849290,'Angie','Jimenes','07-18-1998','femenino','estadounidense','angie@gmail.com',949268489),
 (18364790,'Zumba','Huamaní','01-23-1990','masculino','mexicano','zumba@gmail.com',916374689),
 (12917367,'Geraldine','Salcedo','10-20-1993','femenino','chilena' ,'geraldine@gmail.com',910237890),
 (17281907,'Celeste','Pardo','12-11-1999','femenino','ecuatoriana','celeste@gmail.com',912647579),
-(12737268,'Ariana','Quevedo','12-12-1998','femenino','peruana','ariana@gmail.com',912378648),
+(12737268,'Ariana','Quevedo','12-12-1998','femenino','nicaragüense','ariana@gmail.com',912378648),
 (11825488,'Gustavo','Mallqui','05-13-1989','masculino','peruano','gustavo@gmail.com',990736899),
 (19472579,'German','Garmendia','08-12-1990','masculino','chileno','german@gmail.com',993715167),
-(18361789,'Adriana','Sanchez','06-13-1976','femenino','argentina','adriana@gmail.com',912389756),
+(18361789,'Adriana','Sanchez','06-13-1976','femenino','boliviana','adriana@gmail.com',912389756),
 (18366808,'Alejandro','Avondano','03-12-1999','masculino','brasileño','alejandro@gmail.com',916372467),
-(15728874,'Camilo','Cortés','11-11-1991','masculino','peruano','camilo@gmail.com',916371237),
+(15728874,'Camilo','Cortés','11-11-1991','masculino','español','camilo@gmail.com',916371237),
 (18480752,'Diana','Lopez','10-07-1967','femenino','peruana','diana@gmail.com',995651707),
-(17469076,'Gabriel','Nieto','03-23-1999','masculino','cubano','gabriel@gmail.com',974071568),
-(18379076,'Deny','Muñoz','05-23-1998','femenino','peruana','deny@gmail.com',900086156),
+(17469076,'Gabriel','Nieto','03-23-1999','masculino','uruguaya','gabriel@gmail.com',974071568),
+(18379076,'Deny','Muñoz','05-23-1998','femenino','panameña','deny@gmail.com',900086156),
 (18451808,'Cristina','Barthel','09-08-2000','femenino','boliviana','cristina@gmail.com',911186897),
-(12456235,'Lucia','Carrillo','05-05-1999','femenino','venezolana','lucia@gmail.com',963258741);
+(12456235,'Lucia','Carrillo','05-05-1999','femenino','venezolana','lucia@gmail.com',963258741).
+(11123548,'Cristian','Garcia','01-01-1985','masculino','panameño','cristian@gmail.com',999456123),
+(11112058,'Samuel','Sales','06-06-1987','masculino','aleman','samuel@gmail.com',999965489);
 
 
 --
@@ -267,7 +269,7 @@ INSERT INTO Vuelos VALUES
 ('BPB7','B7MA','PER','BOL','2021-07-13 15:30:00','2021-07-14 06:07:00'), --Peru a Bolivia // 14h 37min
 ('AEC8','A32I','ESP','COL','2021-08-05 16:00:00','2021-08-06 09:00:00'), --España a Colombia // 17h
 ('ADC8','AA3S','DEU','CHL','2021-08-12 15:00:00','2021-08-13 08:15:00'), --Alemania a Chile // 17h 15min
-('ABC9','ABX8','BOL','CRI','2021-09-10 16:00:00','2021-09-11 20:05:00'), --Bolivia a  Costa Rica // 28h 05min
+('ABC9','ABX8','BOL','CRI','2021-09-10 16:00:00','2021-09-11 20:05:00'), --Bolivia a Costa Rica // 28h 05min
 ('CCE9','C9VC','COL','ECU','2021-09-08 18:00:00','2021-09-08 22:16:00'), --Colombia a Ecuador // 4h 16min
 ('MCG7','M23S','CRI','GTM','2021-07-16 09:30:00','2021-07-16 11:30:00'), --Costa Rica a Guatemala// 2h
 ('BCB8','B7IQ','CHL','BRA','2021-08-05 11:30:00','2021-08-05 15:35:00'), --Chile a Brasil // 4h 5min
@@ -382,20 +384,22 @@ CONSTRAINT fk_aeropuertoDPA FOREIGN KEY(aeropuerto_destino) REFERENCES Aeropuert
 --
 
 INSERT INTO Pase_abordar VALUES
-('',15849290,'','',''),
-('',18364790,'','',''),
-('',12917367,'','',''),
-('',17281907,'','',''),
-('',12737268,'','',''),
-('',11825488,'','',''),
-('',19472579,'','',''),
-('',18361789,'','',''),
-('',18366808,'','',''),
-('',15728874,'','',''),
-('',18480752,'','',''),
-('',17469076,'','',''),
-('',18379076,'','',''),
-('',18451808,'','',''),
-('',12456235,'','',''),
+('P15A2',15849290,'ASFB12','ALAX','AHAM'), --Estados Unidos a  Alemania
+('P18A3',18364790,'AIBB09','ALIM','AVVI'), --Peru a Bolivia
+('P12I0',12917367,'IIBA09','ABCN','ABOG'), --España a Colombia
+('P17S4',17281907,'SITA12','AHAM','AANF'), --Alemania a Chile
+('P12B8',12737268,'BSTA10','AVVI','ASJO'), --Bolivia a Costa Rica
+('P11V3',11825488,'VITV16','ABOG','AMEC'), --Colombia a Ecuador
+('P19S9',19472579,'SSFM12','ASJO','APBR'), --Costa Rica a Guatemala
+('P18Q8',18361789,'QIFB09','AANF','AGRU'), --Chile a Brasil
+('P18A6',18366808,'AITB08','ANAP','ALIM'), --Italia a Peru 
+('P15J4',15728874,'JTFB03','APBR','AMVD'), --Guatemala a Uruguay
+('P18L5',18480752,'LSBA01','AGRU','ABCN'), --Brasil a España
+('P17A3',17469076,'AIBA12','AMVD','ALAX'), --Uruguay a Estados Unidos
+('P18A2',18379076,'AITE16','ACCS','APTY'), --Venezuela a Panamá
+('P14IA',18451808,'SIFB20','AMEC','ANAP'), --Ecuador a  Italia
+('P12A2',12456235,'ASBB19','AGDL','AMGA'), --Mexico a Nicaragua
+('P11K8',11123548,'KITA11','AMGA','ACCS'), --Nicaragua a Venezuela
+('P11X1',11112058,'XITA10','APTY','AGDL'); --Panamá a Mexico
 
  
