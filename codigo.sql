@@ -58,24 +58,23 @@ PRIMARY KEY(cod_pais),
 --
 
 INSERT INTO Pais VALUES
-('BRA','Brasil'),
+('DEU','Alemania'),
 ('BOL','Bolivia'),
+('BRA','Brasil'),
 ('CHL','Chile'),
 ('COL','Colombia'),
 ('CRI','Costa Rica'),
 ('ECU','Ecuador'),
+('ESP','España'),
+('USA','Estados Unidos'),
 ('GTM','Guatemala'),
 ('ITA','Italia'),
 ('MEX','Mexico'),
 ('NIC','Nicaragua'),
 ('PAN','Panamá'),
-('URY','Uruguay'),
-('USA','Estado Unidos'),
-('ESP','España'),
 ('PER','Perú'),
-('DEU','Alemania'),
+('URY','Uruguay'),
 ('VEN','Venezuela');
-
 
 --
 -- creación tabla ESTADO
@@ -268,10 +267,10 @@ INSERT INTO Vuelos VALUES
 ('AAAA','B7MA','PER','BOL','2021-07-13 15:30:00','2021-07-14 06:07:00'); --Peru a Bolivia // 14h 37min
 ('AAAA','A32I','ESP','COL','2021-08-05 16:00:00','2021-08-06 09:00:00'); --España a Colombia // 17h
 ('AAAA','AA3S','DEU','CHL','2021-08-12 15:00:00','2021-08-13 08:15:00'); --Alemania a Chile // 17h 15min
-('AAAA','ABX8','BOL','AAA','2021-09-10 16:00:00','2021-09-11 20:05:00'); --Bolivia a  Costa Rica // 28h 05min
-('AAAA','C9VC','COL','AAA','2021-09-08 18:00:00','2021-09-08 22:16:00'); --Colombia a Ecuador // 4h 16min
-('AAAA','M23S','CRI','AAA','2021-07-16 09:30:00','2021-07-16 11:30:00'); --Costa Rica a Guatemala// 2h
-('AAAA','B7IQ','CHL','AAA','2021-08-05 11:30:00','2021-08-05 15:35:00'); --Chile a Brasil // 4h 5min
+('AAAA','ABX8','BOL','CRI','2021-09-10 16:00:00','2021-09-11 20:05:00'); --Bolivia a  Costa Rica // 28h 05min
+('AAAA','C9VC','COL','ECU','2021-09-08 18:00:00','2021-09-08 22:16:00'); --Colombia a Ecuador // 4h 16min
+('AAAA','M23S','CRI','GTM','2021-07-16 09:30:00','2021-07-16 11:30:00'); --Costa Rica a Guatemala// 2h
+('AAAA','B7IQ','CHL','BRA','2021-08-05 11:30:00','2021-08-05 15:35:00'); --Chile a Brasil // 4h 5min
 ('AAAA','B74A','ITA','AAA','2021-07-18 13:00:00','2021-07-19 06:20:00'); --Italia a Peru // 17h 20min
 ('AAAA','B73J','GTM','AAA','2021-10-12 14:20:00','2021-10-13 04:06:00'); --Guatemala a Uruguay // 13h 46min
 ('AAAA','AA6L','BRA','AAA','2021-11-02 18:00:00','2021-11-03 07:00:00'); --Brasil a España // 13h
