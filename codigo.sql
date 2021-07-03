@@ -264,23 +264,23 @@ CONSTRAINT fk_paisD FOREIGN KEY(pais_destino) REFERENCES Pais(cod_pais),
 --
 
 INSERT INTO Vuelos VALUES
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
-('AAAA','AAAA','AAA','AAA','2021-99-99 99:99:00','2021-99-99 99:99:00');
+('AAAA','B78U','USA','DUE','2021-07-10 12:00:00','2021-07-10 20:44:00'); --Estados Unidos a  Alemania // 8h 44min
+('AAAA','B7MA','PER','BOL','2021-07-13 15:30:00','2021-07-14 06:07:00'); --Peru a Bolivia // 14h 37min
+('AAAA','A32I','ESP','COL','2021-08-05 16:00:00','2021-08-06 09:00:00'); --España a Colombia // 17h
+('AAAA','AA3S','DEU','CHL','2021-08-12 15:00:00','2021-08-13 08:15:00'); --Alemania a Chile // 17h 15min
+('AAAA','ABX8','BOL','AAA','2021-09-10 16:00:00','2021-09-11 20:05:00'); --Bolivia a  Costa Rica // 28h 05min
+('AAAA','C9VC','COL','AAA','2021-09-08 18:00:00','2021-09-08 22:16:00'); --Colombia a Ecuador // 4h 16min
+('AAAA','M23S','CRI','AAA','2021-07-16 09:30:00','2021-07-16 11:30:00'); --Costa Rica a Guatemala// 2h
+('AAAA','B7IQ','CHL','AAA','2021-08-05 11:30:00','2021-08-05 15:35:00'); --Chile a Brasil // 4h 5min
+('AAAA','B74A','ITA','AAA','2021-07-18 13:00:00','2021-07-19 06:20:00'); --Italia a Peru // 17h 20min
+('AAAA','B73J','GTM','AAA','2021-10-12 14:20:00','2021-10-13 04:06:00'); --Guatemala a Uruguay // 13h 46min
+('AAAA','AA6L','BRA','AAA','2021-11-02 18:00:00','2021-11-03 07:00:00'); --Brasil a España // 13h
+('AAAA','AA8A','URY','AAA','2021-07-19 19:00:00','2021-07-20 07:31:00'); --Uruguay a Estados Unidos // 12h 31min
+('AAAA','E1AE','VEN','AAA','2021-08-05 07:30:00','2021-08-05 09:50:00'); --Venezuela a Panamá // 2h 20min
+('AAAA','B7MS','ECU','AAA','2021-09-02 12:00:00','2021-09-03 02:55:00'); --Ecuador a  Italia // 14h 55min
+('AAAA','B78A','MEX','AAA','2021-10-04 13:50:00','2021-10-04 19:00:00'); --Mexico a Nicaragua // 6h
+('AAAA','A77K','NIC','AAA','2021-07-03 16:00:00','2021-07-03 20:16:00'); --Nicaragua a Venezuela // 4h 16min
+('AAAA','A32X','PAN','AAA','2021-07-12 20:00:00','2021-07-13 00:05:00'); --Panamá a Mexico // 4h 5min
 
 --
 -- creación tabla SALIDAS
@@ -290,7 +290,7 @@ CREATE TABLE Salidas(
   cod_aerolinea VARCHAR(3) NOT NULL,
   cod_vuelo VARCHAR(4) NOT NULL,
 destino VARCHAR(3) NOT NULL, 
-tiempo TIME NOT NULL,
+tiempo DATETIME NOT NULL,
 cod_estado VARCHAR(1) NOT NULL,
 puerta_abordaje VARCHAR(3) NOT NULL,
 CONSTRAINT fk_aerolineaS FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
@@ -303,7 +303,7 @@ CONSTRAINT fk_estadoS FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
 --
 
 INSERT INTO Salidas VALUES
-('AAA','AAAA','AAA','99-99-99','A','AAA'),
+('AAA','AAAA','AAA','YYYY-MMM-DD 99-99-99','A','AAA'),
 ('AAA','AAAA','AAA','99-99-99','A','AAA'),
 ('AAA','AAAA','AAA','99-99-99','A','AAA'),
 ('AAA','AAAA','AAA','99-99-99','A','AAA'),
