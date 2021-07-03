@@ -302,23 +302,23 @@ CONSTRAINT fk_estadoS FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
 --
 
 INSERT INTO Salidas VALUES
-('AAU','BUD7','DUE','2021-07-10 12:00:00','O','AAA'),
-('APR','BPB7','BOL','2021-07-13 15:30:00','O','AAA'),
-('IES','AEC8','COL','2021-08-05 16:00:00','D','AAA'),
-('SAD','ADC8','CHL','2021-08-12 15:00:00','D','AAA'),
-('BAB','ABC9','CRI','2021-09-10 16:00:00','O','AAA'),
-('VCC','CCE9','ECU','2021-09-08 18:00:00','O','AAA'),
-('SCR','MCG7','GTM','2021-07-16 09:30:00','O','AAA'),
-('QAC','BCB8','BRA','2021-08-05 11:30:00','C','AAA'),
-('AIT','BIP7','PER','2021-07-18 13:00:00','C','AAA'),
-('JBG','BGU0','URY','2021-10-12 14:20:00','O','AAA'),
-('LAB','ABE1','ESP','2021-11-02 18:00:00','O','AAA'),
-('AFU','AUU7','USA','2021-07-19 19:00:00','D','AAA'),
-('AEV','EVP8','PAN','2021-08-05 07:30:00','D','AAA'),
-('SAE','BEI9','ITA','2021-09-02 12:00:00','O','AAA'),
-('AMX','BMN0','NIC','2021-10-04 13:50:00','O','AAA'),
-('KNI','ANV4','VEN','2021-07-03 16:00:00','O','AAA'),
-('XAP','APM7','MEX','2021-07-12 20:00:00','O','AAA'),
+('AAU','BUD7','DUE','2021-07-10 12:00:00','O','D68'),
+('APR','BPB7','BOL','2021-07-13 15:30:00','O','A12'),
+('IES','AEC8','COL','2021-08-05 16:00:00','D','X15'),
+('SAD','ADC8','CHL','2021-08-12 15:00:00','D','C12'),
+('BAB','ABC9','CRI','2021-09-10 16:00:00','O','D16'),
+('VCC','CCE9','ECU','2021-09-08 18:00:00','O','E15'),
+('SCR','MCG7','GTM','2021-07-16 09:30:00','O','V48'),
+('QAC','BCB8','BRA','2021-08-05 11:30:00','C','A46'),
+('AIT','BIP7','PER','2021-07-18 13:00:00','C','H15'),
+('JBG','BGU0','URY','2021-10-12 14:20:00','O','A78'),
+('LAB','ABE1','ESP','2021-11-02 18:00:00','O','V15'),
+('AFU','AUU7','USA','2021-07-19 19:00:00','D','K45'),
+('AEV','EVP8','PAN','2021-08-05 07:30:00','D','N15'),
+('SAE','BEI9','ITA','2021-09-02 12:00:00','O','X45'),
+('AMX','BMN0','NIC','2021-10-04 13:50:00','O','D16'),
+('KNI','ANV4','VEN','2021-07-03 16:00:00','O','A23'),
+('XAP','APM7','MEX','2021-07-12 20:00:00','O','A56');
 
 --
 -- creación tabla RESERVACION
@@ -339,6 +339,28 @@ CONSTRAINT fk_claseR FOREIGN KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
 CONSTRAINT fk_vueloR FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
 ) ;
 
+--Insercion de datos Reservacion
+--
+INSERT INTO Reservacion VALUES
+('ASFB12','AAU','SI','FC',BUD7','A,'12'),
+('AIBB09','APR','IV','BC',BPB7','B,'09'),
+('IIBA09','IES','IV','BC',AEC8','A,'07'),
+('SITA12','SAD','IV','TC',ADC8','A,'12'),
+('BSTA10','BAB','SI','TC',ABC9','A,'10'),
+('VITV16','VCC','IV','TC',CCE9','C,'16'),
+('SSFM12','SCR','SI','FC',MCG7','D,'12'),
+('QIFB09','QAC','IV','FC',BCB8','A,'09'),
+('AITB08','AIT','IV','TC',BIP7','D,'08'),
+('JTFB03','JBG','IV','FC',BGU0','C,'03'),
+('LSBA01','LAB','SI','BC',ABE1','E,'01'),
+('AIBA12','AFU','IV','BC',AUU7','F,'12'),
+('AITE16','AEV','IV','TC',EVP8','B,'16'),
+('SIFB20','SAE','IV','FC',BEI9','A,'20'),
+('ASBB19','AMX','SI','BC',BMN0','A,'19'),
+('KITA11','KNI','IV','TC',ANV4','C,'11'),
+('XITA10','XAP','IV','TC',APM7','C,'10');
+
+
 --
 -- creación tabla PASE DE ABORDAR
 --
@@ -355,3 +377,25 @@ CONSTRAINT fk_reservacionPA FOREIGN KEY(cod_reservacion) REFERENCES Reservacion(
 CONSTRAINT fk_aeropuertoOPA FOREIGN KEY(aeropuerto_origen) REFERENCES Aeropuerto(cod_aeropuerto),
 CONSTRAINT fk_aeropuertoDPA FOREIGN KEY(aeropuerto_destino) REFERENCES Aeropuerto(cod_aeropuerto),
 );
+
+--Insercion de datos Pase_abordar
+--
+
+INSERT INTO Pase_abordar VALUES
+('',15849290,'','',''),
+('',18364790,'','',''),
+('',12917367,'','',''),
+('',17281907,'','',''),
+('',12737268,'','',''),
+('',11825488,'','',''),
+('',19472579,'','',''),
+('',18361789,'','',''),
+('',18366808,'','',''),
+('',15728874,'','',''),
+('',18480752,'','',''),
+('',17469076,'','',''),
+('',18379076,'','',''),
+('',18451808,'','',''),
+('',12456235,'','',''),
+
+ 
