@@ -40,7 +40,7 @@ INSERT INTO Pasajero VALUES (12564897,'Luis','Guevara','06-01-1985','masculino',
 (17469076,'Gabriel','Nieto','03-23-1999','masculino','uruguaya','gabriel@gmail.com',974071568),
 (18379076,'Deny','Muñoz','05-23-1998','femenino','panameña','deny@gmail.com',900086156),
 (18451808,'Cristina','Barthel','09-08-2000','femenino','boliviana','cristina@gmail.com',911186897),
-(12456235,'Lucia','Carrillo','05-05-1999','femenino','venezolana','lucia@gmail.com',963258741).
+(12456235,'Lucia','Carrillo','05-05-1999','femenino','venezolana','lucia@gmail.com',963258741),
 (11123548,'Cristian','Garcia','01-01-1985','masculino','panameño','cristian@gmail.com',999456123),
 (11112058,'Samuel','Sales','06-06-1987','masculino','aleman','samuel@gmail.com',999965489);
 
@@ -257,7 +257,7 @@ hora_llegada DATETIME NOT NULL,
 PRIMARY KEY(cod_vuelo),
 CONSTRAINT fk_avion FOREIGN KEY(cod_avion) REFERENCES Aviones(cod_avion),
 CONSTRAINT fk_paisO FOREIGN KEY(pais_origen) REFERENCES Pais(cod_pais),
-CONSTRAINT fk_paisD FOREIGN KEY(pais_destino) REFERENCES Pais(cod_pais),
+CONSTRAINT fk_paisd FOREIGN KEY(pais_destino) REFERENCES Pais(cod_pais),
 );
 
 
@@ -265,7 +265,7 @@ CONSTRAINT fk_paisD FOREIGN KEY(pais_destino) REFERENCES Pais(cod_pais),
 --
 
 INSERT INTO Vuelos VALUES
-('BUD7','B78U','USA','DUE','2021-07-10 12:00:00','2021-07-10 20:44:00'), --Estados Unidos a  Alemania // 8h 44min
+('BUD7','B78U','USA','DEU','2021-07-10 12:00:00','2021-07-10 20:44:00'), --Estados Unidos a  Alemania // 8h 44min
 ('BPB7','B7MA','PER','BOL','2021-07-13 15:30:00','2021-07-14 06:07:00'), --Peru a Bolivia // 14h 37min
 ('AEC8','A32I','ESP','COL','2021-08-05 16:00:00','2021-08-06 09:00:00'), --España a Colombia // 17h
 ('ADC8','AA3S','DEU','CHL','2021-08-12 15:00:00','2021-08-13 08:15:00'), --Alemania a Chile // 17h 15min
@@ -304,7 +304,7 @@ CONSTRAINT fk_estadoS FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
 --
 
 INSERT INTO Salidas VALUES
-('AAU','BUD7','DUE','2021-07-10 12:00:00','O','D68'),
+('AAU','BUD7','DEU','2021-07-10 12:00:00','O','D68'),
 ('APR','BPB7','BOL','2021-07-13 15:30:00','O','A12'),
 ('IES','AEC8','COL','2021-08-05 16:00:00','D','X15'),
 ('SAD','ADC8','CHL','2021-08-12 15:00:00','D','C12'),
@@ -339,28 +339,28 @@ CONSTRAINT fk_aerolineaR FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aer
 CONSTRAINT fk_tipoR FOREIGN KEY(cod_tipo) REFERENCES Tipo_vuelo(cod_tipo),
 CONSTRAINT fk_claseR FOREIGN KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
 CONSTRAINT fk_vueloR FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
-) ;
+);
 
 --Insercion de datos Reservacion
 --
 INSERT INTO Reservacion VALUES
-('ASFB12','AAU','SI','FC',BUD7','A,'12'),
-('AIBB09','APR','IV','BC',BPB7','B,'09'),
-('IIBA09','IES','IV','BC',AEC8','A,'07'),
-('SITA12','SAD','IV','TC',ADC8','A,'12'),
-('BSTA10','BAB','SI','TC',ABC9','A,'10'),
-('VITV16','VCC','IV','TC',CCE9','C,'16'),
-('SSFM12','SCR','SI','FC',MCG7','D,'12'),
-('QIFB09','QAC','IV','FC',BCB8','A,'09'),
-('AITB08','AIT','IV','TC',BIP7','D,'08'),
-('JTFB03','JBG','IV','FC',BGU0','C,'03'),
-('LSBA01','LAB','SI','BC',ABE1','E,'01'),
-('AIBA12','AFU','IV','BC',AUU7','F,'12'),
-('AITE16','AEV','IV','TC',EVP8','B,'16'),
-('SIFB20','SAE','IV','FC',BEI9','A,'20'),
-('ASBB19','AMX','SI','BC',BMN0','A,'19'),
-('KITA11','KNI','IV','TC',ANV4','C,'11'),
-('XITA10','XAP','IV','TC',APM7','C,'10');
+('ASFB12','AAU','SI','FC','BUD7','A',12),
+('AIBB09','APR','IV','BC','BPB7','B',09),
+('IIBA09','IES','IV','BC','AEC8','A',07),
+('SITA12','SAD','IV','TC','ADC8','A',12),
+('BSTA10','BAB','SI','TC','ABC9','A',10),
+('VITV16','VCC','IV','TC','CCE9','C',16),
+('SSFM12','SCR','SI','FC','MCG7','D',12),
+('QIFB09','QAC','IV','FC','BCB8','A',09),
+('AITB08','AIT','IV','TC','BIP7','D',08),
+('JTFB03','JBG','IV','FC','BGU0','C',03),
+('LSBA01','LAB','SI','BC','ABE1','E',01),
+('AIBA12','AFU','IV','BC','AUU7','F',12),
+('AITE16','AEV','IV','TC','EVP8','B',16),
+('SIFB20','SAE','IV','FC','BEI9','A',20),
+('ASBB19','AMX','SI','BC','BMN0','A',19),
+('KITA11','KNI','IV','TC','ANV4','C',11),
+('XITA10','XAP','IV','TC','APM7','C',10);
 
 
 --
@@ -401,5 +401,4 @@ INSERT INTO Pase_abordar VALUES
 ('P12A2',12456235,'ASBB19','AGDL','AMGA'), --Mexico a Nicaragua
 ('P11K8',11123548,'KITA11','AMGA','ACCS'), --Nicaragua a Venezuela
 ('P11X1',11112058,'XITA10','APTY','AGDL'); --Panamá a Mexico
-
  
