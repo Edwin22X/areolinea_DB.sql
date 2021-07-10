@@ -1,16 +1,43 @@
-SELECT * FROM Vuelos
-WHERE cod_avion LIKE 'B%'
-
-SELECT * FROM Aviones
-WHERE capacidad < 200
-
-SELECT * FROM Salidas
-WHERE cod_estado = 'O'
 
 --Vuelos con códigos de aviones que comiencen con la letra 'B', que el avión tenga una capacidad menor a 200 y que el estado del vuelo sea 'ON TIME' 
 SELECT v.cod_vuelo, a.cod_avion,a.cod_aerolinea,cod_estado,capacidad FROM Vuelos v
 INNER JOIN Salidas s ON v.cod_vuelo = s.cod_vuelo
 INNER JOIN Aviones a ON v.cod_avion = a.cod_avion
-WHERE a.cod_avion LIKE 'B%'
+WHERE v.cod_vuelo LIKE 'B%'
 AND capacidad < 200
 AND cod_estado = 'O'
+
+-------------------------------------------------------
+
+--Reservacion que sean de Primera Clase, que su estado sea 'On Time' y que sus códigos de paises de origenes sean USA y ECU
+SELECT r.cod_reservacion, r.cod_clase, s.cod_estado,v.pais_origen FROM Reservacion r
+INNER JOIN Vuelos v ON r.cod_vuelo = v.cod_vuelo
+INNER JOIN Salidas s ON v.cod_vuelo = s.cod_vuelo
+WHERE cod_clase ='FC'
+AND cod_estado = 'O'
+AND pais_origen IN ('USA','ECU')
+
+
+-------------------------------------------
+
+--Aviones que sean de modelo 'Beoing', que los nombres de las aerolineas comience con 'A' y que sean de los paises Italia y Estados Unidos
+SELECT cod_avion, modelo_avion, nombre_aerolinea, nombre_pais  FROM Aviones av
+INNER JOIN Aerolinea ae ON av.cod_aerolinea = ae.cod_aerolinea
+INNER JOIN Aeropuerto arp ON ae.aeropuerto_principal = arp.cod_aeropuerto
+INNER JOIN Pais p ON arp.cod_pais = p.cod_pais
+WHERE modelo_avion LIKE 'Boeing%'
+AND nombre_aerolinea LIKE 'A%'
+AND p.cod_pais IN ('USA','ITA')
+
+
+---------------------------------
+
+--Pasajeros con DNI que comiencen con '18', que sus códigos de vuelos comiencen con B y que tengas como paises de destino Perú y Bolivia
+SELECT p.dni, nombre +' '+apellido as NombreCompleto, v.cod_vuelo, pai.nombre_pais as PaisDestino FROM Pasajero p
+INNER JOIN Pase_abordar pa ON p.dni = pa.dni
+INNER JOIN Reservacion r ON r.cod_reservacion = pa.cod_reservacion
+INNER JOIN Vuelos v ON  v.cod_vuelo = r.cod_vuelo
+INNER JOIN Pais pai ON pai.cod_pais = v.pais_destino
+WHERE p.dni LIKE '18%'
+AND v.cod_vuelo LIKE 'B%'
+AND pais_destino IN ('BOL','PER')
