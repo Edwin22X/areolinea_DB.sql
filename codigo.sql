@@ -2,7 +2,11 @@
 -- creación de base de datos
 --
 
-CREATE DATABASE aerolinea_BD
+CREATE DATABASE aerolinea_BD;
+GO
+
+USE aerolinea_BD
+GO
 
 --------------------------------------------------
 
@@ -17,10 +21,11 @@ CREATE TABLE Pasajero (
   f_nacimiento DATE NOT NULL,
   genero VARCHAR(50) NOT NULL,
   nacionalidad VARCHAR(50) NOT NULL,
-  correo VARCHAR(50) NOT NULL,
-  celular VARCHAR(9) NOT NULL,
+  correo VARCHAR(50) NOT NULL DEFAULT 'correo@gmail.com',
+  celular VARCHAR(9) NOT NULL DEFAULT '999999999',
   PRIMARY KEY(dni),
 );
+GO
 
 ---Inserción de datos Pasajero
 ---
@@ -43,7 +48,7 @@ INSERT INTO Pasajero VALUES (12564897,'Luis','Guevara','06-01-1985','masculino',
 (12456235,'Lucia','Carrillo','05-05-1999','femenino','venezolana','lucia@gmail.com',963258741),
 (11123548,'Cristian','Garcia','01-01-1985','masculino','panameño','cristian@gmail.com',999456123),
 (11112058,'Samuel','Sales','06-06-1987','masculino','aleman','samuel@gmail.com',999965489);
-
+GO
 
 --
 -- creación tabla PAÍS
@@ -54,7 +59,7 @@ CREATE TABLE Pais (
   nombre_pais VARCHAR(50) NOT NULL, 
 PRIMARY KEY(cod_pais),
 );
-
+GO
 
 --Inserción de datos Pais
 --
@@ -77,7 +82,7 @@ INSERT INTO Pais VALUES
 ('PER','Perú'),
 ('URY','Uruguay'),
 ('VEN','Venezuela');
-
+GO
 --
 -- creación tabla ESTADO
 --
@@ -87,7 +92,7 @@ CREATE TABLE Estado (
   nombre_estado VARCHAR(50) NOT NULL, 
 PRIMARY KEY(cod_estado),
 );
-
+GO
 
 --Inserción de datos Estado
 --
@@ -96,7 +101,7 @@ INSERT INTO Estado VALUES
 ('C','Cancelled'), --cancelado
 ('D','Delayed'), --retrasado
 ('O','On Time'); --a tiempo
-
+GO
 
 --
 -- creación tabla TIPO VUELO
@@ -107,6 +112,7 @@ CREATE TABLE Tipo_vuelo (
   tipo VARCHAR(50) NOT NULL, 
 PRIMARY KEY(cod_tipo),
 );
+GO
 
 
 --Inserción datos Tipo_vuelo
@@ -115,6 +121,7 @@ PRIMARY KEY(cod_tipo),
 INSERT INTO Tipo_vuelo VALUES
 ('SI','Solo Ida'),
 ('IV','Ida y Vuelta');
+GO
 
 
 --
@@ -126,6 +133,7 @@ CREATE TABLE Clase_vuelo (
   clase VARCHAR(50) NOT NULL, 
 PRIMARY KEY(cod_clase),
 );
+GO
 
 
 --Inserción datos Clase_vuelo
@@ -135,6 +143,7 @@ INSERT INTO Clase_vuelo VALUES
 ('FC','First Class'), --primera clase
 ('BC','Business Class'), --clase ejecutiva
 ('TC','Tourist Class'); --clase turista
+GO
 
 
 --
@@ -148,6 +157,7 @@ cod_pais VARCHAR(3) NOT NULL,
 PRIMARY KEY(cod_aeropuerto),
 CONSTRAINT fk_pais FOREIGN KEY(cod_pais) REFERENCES Pais(cod_pais),
 );
+GO
 
 
 --Inserción de datos Aeropuerto
@@ -171,6 +181,7 @@ INSERT INTO Aeropuerto VALUES
 ('ALIM','Aeropuerto Internacional Jorge Chávez','PER'),
 ('AHAM','Aeropuerto de Hamburgo','DEU'),
 ('ACCS','Aeropuerto Internacional de Maiquetía Simón Bolívar','VEN');
+GO
 
 
 --
@@ -184,6 +195,8 @@ aeropuerto_principal VARCHAR(4) NOT NULL,
 PRIMARY KEY(cod_aerolinea),
 CONSTRAINT fk_aeropuerto FOREIGN KEY(aeropuerto_principal) REFERENCES Aeropuerto(cod_aeropuerto),
 );
+GO
+
 
 --Inserción datos Aerolinea
 --
@@ -206,6 +219,7 @@ INSERT INTO Aerolinea VALUES
 ('AMX','Aeromexico','AGDL'),
 ('KNI','KLM','AMGA'),
 ('XAP','Xiamen Airlines','APTY');
+GO
 
 
 --
@@ -220,6 +234,8 @@ capacidad INT NOT NULL,
 PRIMARY KEY(cod_avion),
 CONSTRAINT fk_aerolinea FOREIGN KEY(cod_aerolinea) REFERENCES Aerolinea(cod_aerolinea),
 );
+GO
+
 
 --Inserción de datos Aviones
 --
@@ -242,6 +258,8 @@ INSERT INTO Aviones VALUES
 ('A32I','Airbus 330-200','IES',100),
 ('B7MA','Boeing 737 MAX 8','APR',189),
 ('B78U','Boeing 780 - 800','AAU',160);
+GO
+
 
 --
 -- creación tabla VUELOS
@@ -259,6 +277,7 @@ CONSTRAINT fk_avion FOREIGN KEY(cod_avion) REFERENCES Aviones(cod_avion),
 CONSTRAINT fk_paisO FOREIGN KEY(pais_origen) REFERENCES Pais(cod_pais),
 CONSTRAINT fk_paisd FOREIGN KEY(pais_destino) REFERENCES Pais(cod_pais),
 );
+GO
 
 
 --Inserción datos Vuelos
@@ -282,6 +301,8 @@ INSERT INTO Vuelos VALUES
 ('BMN0','B78A','MEX','NIC','2021-10-04 13:50:00','2021-10-04 19:00:00'), --Mexico a Nicaragua // 6h
 ('ANV4','A77K','NIC','VEN','2021-07-03 16:00:00','2021-07-03 20:16:00'), --Nicaragua a Venezuela // 4h 16min
 ('APM7','A32X','PAN','MEX','2021-07-12 20:00:00','2021-07-13 00:05:00'); --Panamá a Mexico // 4h 5min
+GO
+
 
 --
 -- creación tabla SALIDAS
@@ -299,6 +320,8 @@ CONSTRAINT fk_vueloS FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
 CONSTRAINT fk_destinoS FOREIGN KEY(destino) REFERENCES Pais(cod_pais),
 CONSTRAINT fk_estadoS FOREIGN KEY(cod_estado) REFERENCES Estado(cod_estado),
 );
+GO
+
 
 --Insercion de datos Salidad
 --
@@ -321,6 +344,8 @@ INSERT INTO Salidas VALUES
 ('AMX','BMN0','NIC','2021-10-04 13:50:00','O','D16'),
 ('KNI','ANV4','VEN','2021-07-03 16:00:00','O','A23'),
 ('XAP','APM7','MEX','2021-07-12 20:00:00','O','A56');
+GO
+
 
 --
 -- creación tabla RESERVACION
@@ -340,6 +365,8 @@ CONSTRAINT fk_tipoR FOREIGN KEY(cod_tipo) REFERENCES Tipo_vuelo(cod_tipo),
 CONSTRAINT fk_claseR FOREIGN KEY(cod_clase) REFERENCES Clase_vuelo(cod_clase),
 CONSTRAINT fk_vueloR FOREIGN KEY(cod_vuelo) REFERENCES Vuelos(cod_vuelo),
 );
+GO
+
 
 --Insercion de datos Reservacion
 --
@@ -361,6 +388,7 @@ INSERT INTO Reservacion VALUES
 ('ASBB19','AMX','SI','BC','BMN0','A',19),
 ('KITA11','KNI','IV','TC','ANV4','C',11),
 ('XITA10','XAP','IV','TC','APM7','C',10);
+GO
 
 
 --
@@ -379,6 +407,8 @@ CONSTRAINT fk_reservacionPA FOREIGN KEY(cod_reservacion) REFERENCES Reservacion(
 CONSTRAINT fk_aeropuertoOPA FOREIGN KEY(aeropuerto_origen) REFERENCES Aeropuerto(cod_aeropuerto),
 CONSTRAINT fk_aeropuertoDPA FOREIGN KEY(aeropuerto_destino) REFERENCES Aeropuerto(cod_aeropuerto),
 );
+GO
+
 
 --Insercion de datos Pase_abordar
 --
@@ -401,4 +431,5 @@ INSERT INTO Pase_abordar VALUES
 ('P12A2',12456235,'ASBB19','AGDL','AMGA'), --Mexico a Nicaragua
 ('P11K8',11123548,'KITA11','AMGA','ACCS'), --Nicaragua a Venezuela
 ('P11X1',11112058,'XITA10','APTY','AGDL'); --Panamá a Mexico
+GO
  
