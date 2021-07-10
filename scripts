@@ -1,0 +1,16 @@
+SELECT * FROM Vuelos
+WHERE cod_avion LIKE 'B%'
+
+SELECT * FROM Aviones
+WHERE capacidad < 200
+
+SELECT * FROM Salidas
+WHERE cod_estado = 'O'
+
+--Vuelos con códigos de aviones que comiencen con la letra 'B', que el avión tenga una capacidad menor a 200 y que el estado del vuelo sea 'ON TIME' 
+SELECT v.cod_vuelo, a.cod_avion,a.cod_aerolinea,cod_estado,capacidad FROM Vuelos v
+INNER JOIN Salidas s ON v.cod_vuelo = s.cod_vuelo
+INNER JOIN Aviones a ON v.cod_avion = a.cod_avion
+WHERE a.cod_avion LIKE 'B%'
+AND capacidad < 200
+AND cod_estado = 'O'
