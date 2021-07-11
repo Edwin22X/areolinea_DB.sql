@@ -41,3 +41,14 @@ INNER JOIN Pais pai ON pai.cod_pais = v.pais_destino
 WHERE p.dni LIKE '18%'
 AND v.cod_vuelo LIKE 'B%'
 AND pais_destino IN ('BOL','PER')
+
+-----------------------------------------------
+
+--Salidas que su estado sea 'Delayed', que sean del mes de Agosto y que los aviones pertenezcan a las aerolineas Interjet y Sky Airline (IES AND SAD) 
+SELECT s.cod_vuelo, s.cod_estado, v.hora_salida, ae.cod_aerolinea, ae.nombre_aerolinea FROM Salidas s
+INNER JOIN Vuelos v ON s.cod_vuelo = v.cod_vuelo
+INNER JOIN Aviones a ON a.cod_avion = v.cod_avion
+INNER JOIN Aerolinea ae ON ae.cod_aerolinea = a.cod_aerolinea
+WHERE s.cod_estado = 'D'
+AND v.hora_salida >= '2021-08-01 00:00:00' AND hora_salida <= '2021-08-31 23:59:59'
+AND ae.nombre_aerolinea IN ('Interjet','Sky Airline')
