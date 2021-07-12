@@ -1,18 +1,19 @@
--- 1.Pasajeron de nacionalidad boliviana, que viajan a Brasil en Primera Clase
-SELECT p.nombre, p.nacionalidad, pa.nombre_pais AS 'Destino', r.cod_clase FROM  Pase_abordar paa 
+-- 1.Pasajeros de nacionalidad boliviana, que viajan a Brasil en Primera Clase
+SELECT p.nombre as Pasajero, p.nacionalidad, pa.nombre_pais AS 'Destino', cv.clase FROM  Pase_abordar paa 
 INNER JOIN Reservacion r on paa.cod_reservacion = r.cod_reservacion 
 INNER JOIN Pasajero p on paa.dni = p.dni 
 INNER JOIN Aeropuerto ae on ae.cod_aeropuerto = paa.aeropuerto_destino 
 INNER JOIN Pais pa on pa.cod_pais=ae.cod_pais
+INNER JOIN Clase_vuelo cv ON r.cod_clase = cv.cod_clase
 WHERE
 	p.nacionalidad = 'boliviana' and
 	pa.cod_pais = 'BRA' and
-	r.cod_clase = 'FC'
+	cv.clase = 'First Class'
 
 -------------------------------------------------------------------------
 
--- 2.Pasajeros con vuelos de ida y vuelta que sean de primera clase, femeninas que vayan a Italia
-select p.nombre, p.genero, tv.tipo, cv.clase, pa.nombre_pais as Destino from Pase_abordar paa 
+-- 2.Pasajeros de genero femenino, con tipo de vuelo: 'ida y vuelta' que sean de primera clase con destino a Italia
+SELECT p.nombre as Pasajero, p.genero, tv.tipo, cv.clase, pa.nombre_pais as Destino from Pase_abordar paa 
 INNER JOIN Reservacion r on paa.cod_reservacion = r.cod_reservacion 
 INNER JOIN Pasajero p on paa.dni = p.dni 
 INNER JOIN Aeropuerto ae on ae.cod_aeropuerto = paa.aeropuerto_destino 
@@ -27,8 +28,8 @@ WHERE
 
 -------------------------------------------------------------------------
 
--- 3.Vuelos de primera clase de los meses de julio 
-SELECT vue.cod_vuelo, cve.clase, vue.hora_salida FROM Vuelos vue 
+-- 3.Vuelos de primera clase que sean del mes 7(Julio)
+SELECT vue.cod_vuelo, cve.clase, MONTH(vue.hora_salida) as Mes FROM Vuelos vue 
 INNER JOIN Reservacion res on vue.cod_vuelo= res.cod_vuelo 
 INNER JOIN Clase_vuelo cve on res.cod_clase=cve.cod_clase
 WHERE
@@ -37,29 +38,32 @@ WHERE
 
 -------------------------------------------------------------------------
 
--- 4. Vuelos con códigos de aviones que comiencen con la letra 'B', que el avión tenga una capacidad menor a 200 y que el estado del vuelo sea 'ON TIME'
-SELECT v.cod_vuelo, a.cod_avion,a.cod_aerolinea,cod_estado,capacidad FROM Vuelos v
+-- 4. Vuelos con códigos de aviones que comiencen con la letra 'B', que el avión tenga una capacidad menor a 200 y que el estado del vuelo sea 'On Time'
+SELECT v.cod_vuelo, a.cod_avion,a.cod_aerolinea, s.cod_estado, e.nombre_estado as Estado,capacidad FROM Vuelos v
 INNER JOIN Salidas s ON v.cod_vuelo = s.cod_vuelo
 INNER JOIN Aviones a ON v.cod_avion = a.cod_avion
+INNER JOIN Estado e ON s.cod_estado = e.cod_estado
 WHERE v.cod_vuelo LIKE 'B%'
 AND capacidad < 200
-AND cod_estado = 'O'
+AND e.nombre_estado = 'On Time'
 
 -------------------------------------------------------------------------
 
--- 5.Reservacion que sean de Primera Clase, que su estado sea 'On Time' y que sus códigos de paises de origenes sean USA y ECU
-SELECT r.cod_reservacion, r.cod_clase, s.cod_estado,v.pais_origen FROM Reservacion r
+-- 5.Reservacion que sean de First Class, que su estado sea 'On Time' y que sus códigos de paises de origenes sean USA y ECU
+SELECT r.cod_reservacion, cv.clase, e.nombre_estado as Estado,v.pais_origen FROM Reservacion r
 INNER JOIN Vuelos v ON r.cod_vuelo = v.cod_vuelo
 INNER JOIN Salidas s ON v.cod_vuelo = s.cod_vuelo
-WHERE cod_clase ='FC'
-AND cod_estado = 'O'
+INNER JOIN Clase_vuelo cv ON r.cod_clase = cv.cod_clase
+INNER JOIN Estado e ON s.cod_estado = e.cod_estado
+WHERE cv.clase ='First Class'
+AND e.nombre_estado = 'On Time'
 AND pais_origen IN ('USA','ECU')
 
 
 -------------------------------------------------------------------------
 
--- 6.Aviones que sean de modelo 'Boeing', que los nombres de las aerolineas comiencen con 'A' y que sean de los paises Italia y Estados Unidos
-SELECT cod_avion, modelo_avion, nombre_aerolinea, nombre_pais  FROM Aviones av
+-- 6.Aviones que su modelo comiencen con 'Boeing', que los nombres de las aerolineas comiencen con 'A' y que sean de los paises Italia y Estados Unidos
+SELECT cod_avion, modelo_avion, nombre_aerolinea, nombre_pais as Pais FROM Aviones av
 INNER JOIN Aerolinea ae ON av.cod_aerolinea = ae.cod_aerolinea
 INNER JOIN Aeropuerto arp ON ae.aeropuerto_principal = arp.cod_aeropuerto
 INNER JOIN Pais p ON arp.cod_pais = p.cod_pais
@@ -83,22 +87,24 @@ AND pais_destino IN ('BOL','PER')
 
 -------------------------------------------------------------------------
 
--- 8.Salidas que su estado sea 'Delayed', que sean del mes de Agosto y que los aviones pertenezcan a las aerolineas Interjet y Sky Airline (IES AND SAD) 
-SELECT s.cod_vuelo, s.cod_estado, v.hora_salida, ae.cod_aerolinea, ae.nombre_aerolinea FROM Salidas s
+-- 8.Salidas que su estado sea 'Delayed', que sean del mes 8(Agosto) y que los aviones pertenezcan a las aerolineas Interjet y Sky Airline
+SELECT s.cod_vuelo, e.nombre_estado as Estado, MONTH(v.hora_salida) as Mes, ae.cod_aerolinea, ae.nombre_aerolinea FROM Salidas s
 INNER JOIN Vuelos v ON s.cod_vuelo = v.cod_vuelo
 INNER JOIN Aviones a ON a.cod_avion = v.cod_avion
 INNER JOIN Aerolinea ae ON ae.cod_aerolinea = a.cod_aerolinea
-WHERE s.cod_estado = 'D'
-AND v.hora_salida >= '2021-08-01 00:00:00' AND hora_salida <= '2021-08-31 23:59:59'
+INNER JOIN Estado e ON s.cod_estado = e.cod_estado
+WHERE e.nombre_estado = 'Delayed'
+AND MONTH(v.hora_salida) = 8
 AND ae.nombre_aerolinea IN ('Interjet','Sky Airline')
 
 
 -------------------------------------------------------------------------
 
 -- 9.Reservaciones que sean de Clase Turista (TC) y que sus aeropuestos de destinos pertenezcan a los paises de Alemania e Italia
-SELECT r.cod_reservacion, r.cod_clase, pa.aeropuerto_destino, a.nombre_aeropuerto, p.nombre_pais FROM Reservacion r
+SELECT r.cod_reservacion, r.cod_clase, cv.clase, pa.aeropuerto_destino, a.nombre_aeropuerto, p.nombre_pais as Pais FROM Reservacion r
 INNER JOIN Pase_abordar pa ON r.cod_reservacion = pa.cod_reservacion
 INNER JOIN Aeropuerto a ON pa.aeropuerto_origen = a.cod_aeropuerto
 INNER JOIN Pais p ON a.cod_pais = p.cod_pais
-WHERE cod_clase = 'TC'
+INNER JOIN Clase_vuelo cv ON r.cod_clase = cv.cod_clase
+WHERE cv.clase = 'Tourist Class'
 AND p.nombre_pais IN ('Italia','Alemania')
