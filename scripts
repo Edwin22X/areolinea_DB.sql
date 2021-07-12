@@ -52,3 +52,13 @@ INNER JOIN Aerolinea ae ON ae.cod_aerolinea = a.cod_aerolinea
 WHERE s.cod_estado = 'D'
 AND v.hora_salida >= '2021-08-01 00:00:00' AND hora_salida <= '2021-08-31 23:59:59'
 AND ae.nombre_aerolinea IN ('Interjet','Sky Airline')
+
+---------------------------------------------------------
+
+--Reservaciones que sean de Clase Turista (TC) y que sus aeropuestos de destinos pertenezcan a los paises de Alemania e Italia
+SELECT r.cod_reservacion, r.cod_clase, pa.aeropuerto_destino, a.nombre_aeropuerto, p.nombre_pais FROM Reservacion r
+INNER JOIN Pase_abordar pa ON r.cod_reservacion = pa.cod_reservacion
+INNER JOIN Aeropuerto a ON pa.aeropuerto_origen = a.cod_aeropuerto
+INNER JOIN Pais p ON a.cod_pais = p.cod_pais
+WHERE cod_clase = 'TC'
+AND p.nombre_pais IN ('Italia','Alemania')
